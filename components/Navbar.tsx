@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import ServicesDropdown from "./services";
 import Link from "next/link";
-import { FaLightbulb } from "react-icons/fa";
+import { FaLightbulb, FaBars, FaTimes } from "react-icons/fa";
 import clsx from "clsx";
 
 const Navbar: React.FC<{
@@ -14,6 +14,7 @@ const Navbar: React.FC<{
   showNavbar: boolean; // Add showNavbar prop
 }> = ({ isDarkMode, toggleTheme, scrollToBlogSection, scrollToAboutUsSection, showNavbar }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,11 +29,15 @@ const Navbar: React.FC<{
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <>
       <nav
         className={clsx(
-          "fixed top-2 left-1/2 transform -translate-x-1/2 transition-all duration-250 z-50 px-6 py-3 rounded-full",
+          "fixed top-2 left-1/2 transform -translate-x-1/2 transition-all duration-250 z-50 px-6 py-3 rounded-full w-full max-w-7xl",
           {
             "bg-white": !isDarkMode && !isScrolled,
             "bg-white shadow-black-shadow": !isDarkMode && isScrolled,
@@ -43,9 +48,18 @@ const Navbar: React.FC<{
           }
         )}
       >
-        <div className="flex items-center justify-between max-w-7xl mx-auto">
+        <div className="flex items-center justify-between">
+          {/* Mobile Menu Button */}
+          <button
+            onClick={toggleMobileMenu}
+            className="md:hidden text-2xl text-gray-800 dark:text-white"
+            aria-label="Toggle Mobile Menu"
+          >
+            {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
+          </button>
+
           {/* Right Section: Navigation Items */}
-          <div className="flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-4">
             <ServicesDropdown />
             <div className="relative">
               <Link
@@ -76,6 +90,41 @@ const Navbar: React.FC<{
             </div>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden flex flex-col items-center space-y-4 mt-4">
+            <ServicesDropdown />
+            <Link
+              href="#hero-parallax-page"
+              className="relative px-6 py-3 text-sm font-medium text-white bg-black border border-gray-500 rounded-full hover:bg-gray-800 dark:hover:bg-gray-700 transition-colors duration-500"
+              aria-label="View Products"
+              onClick={toggleMobileMenu}
+            >
+              Products
+            </Link>
+            <button
+              onClick={() => {
+                scrollToBlogSection();
+                toggleMobileMenu();
+              }}
+              className="relative px-6 py-3 text-sm font-medium text-white bg-black border border-gray-500 rounded-full hover:bg-gray-800 dark:hover:bg-gray-700 transition-colors duration-500"
+              aria-label="Scroll to Blog Section"
+            >
+              Blog
+            </button>
+            <button
+              onClick={() => {
+                scrollToAboutUsSection();
+                toggleMobileMenu();
+              }}
+              className="relative px-6 py-3 text-sm font-medium text-white bg-black border border-gray-500 rounded-full hover:bg-gray-800 dark:hover:bg-gray-700 transition-colors duration-500"
+              aria-label="Scroll to About Us Section"
+            >
+              About Us
+            </button>
+          </div>
+        )}
       </nav>
 
       {/* Theme Toggle Button */}
