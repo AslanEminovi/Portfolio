@@ -23,8 +23,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "SynQuad",
-  description: "Comprehensive SEO optimization, cutting-edge website development, targeted advertisements, and digital solutions to help your business thrive.",
+  title: "SynQuad - Aslan Eminovi",
+  description: "Comprehensive SEO optimization, cutting-edge website development, targeted advertisements, and digital solutions to help your business thrive. Aslan Eminovi, Aslan, Eminovi, AslanEminovi, EMINOVIASLAN",
 };
 
 export default function RootLayout({
@@ -35,6 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Script
           id="theme-script"
           strategy="beforeInteractive"
@@ -45,7 +46,7 @@ export default function RootLayout({
                   const storedTheme = localStorage.getItem('theme');
                   if (storedTheme === 'dark') {
                     document.documentElement.classList.add('dark');
-                  } else if (storedTheme was 'light') {
+                  } else if (storedTheme === 'light') {
                     document.documentElement.classList.remove('dark');
                   } else {
                     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -58,37 +59,23 @@ export default function RootLayout({
             `,
           }}
         />
-        <meta name="description" content="Comprehensive SEO optimization, cutting-edge website development, targeted advertisements, and digital solutions to help your business thrive." />
-        <meta name="keywords" content="SEO optimization, website development, digital marketing, targeted advertisements, business growth, online solutions" />
+        <meta name="description" content="Comprehensive SEO optimization, cutting-edge website development, targeted advertisements, and digital solutions to help your business thrive. Aslan Eminovi, Aslan, Eminovi, AslanEminovi, EMINOVIASLAN" />
+        <meta name="keywords" content="Aslan, Aslan Eminovi, aslan eminovi, aslan, eminovi, aslaneminovi, AslanEminovi, EMINOVIASLAN, eminovi aslan" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "http://schema.org",
-          "@type": "Organization",
-          "name": "SynQuad",
+          "@type": "Person",
+          "name": "Aslan Eminovi",
           "url": "http://www.synquad.com",
-          "logo": "http://www.synquad.com/logo.png",
-          "description": "Comprehensive SEO optimization, cutting-edge website development, targeted advertisements, and digital solutions to help your business thrive.",
           "sameAs": [
-            "http://www.facebook.com/synquad",
-            "http://www.twitter.com/synquad",
-            "http://www.linkedin.com/company/synquad"
+            "http://www.facebook.com/aslaneminovi",
+            "http://www.twitter.com/aslaneminovi",
+            "http://www.linkedin.com/in/aslaneminovi"
           ],
-          "service": [
-            {
-              "@type": "Service",
-              "name": "SEO Optimization",
-              "description": "Improve your website's visibility on search engines with our expert SEO services."
-            },
-            {
-              "@type": "Service",
-              "name": "Website Development",
-              "description": "Get a cutting-edge website developed to meet your business needs."
-            },
-            {
-              "@type": "Service",
-              "name": "Digital Marketing",
-              "description": "Targeted advertisements and digital marketing solutions to grow your business."
-            }
-          ]
+          "jobTitle": "SEO Specialist",
+          "worksFor": {
+            "@type": "Organization",
+            "name": "SynQuad"
+          }
         })}} />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}>
