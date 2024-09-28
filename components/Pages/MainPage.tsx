@@ -169,7 +169,7 @@ export default function MainPage() {
       <div ref={aboutUsSectionRef}>
         <AboutUs isDarkMode={isDarkMode} />
       </div>
-      
+
       <div ref={ExpCardsRef} className={`flex justify-start p-4 ${isDarkMode ? 'dark' : ''}`}>
         <ExpandableCardDemo isDarkMode={isDarkMode} />
       </div>
